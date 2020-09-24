@@ -1,0 +1,347 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 100%;
+    vertical-align: baseline;
+    font-family: inherit;
+    font-weight: inherit;
+    color: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.1em;
+    background: #f5f5f5;
+    color: #4d4d4d;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 300;
+}
+
+:focus {
+    outline: 0;
+}
+
+.hidden {
+    display: none;
+}
+.inactive{
+    filter: grayscale(1);
+}
+
+.articleapp {
+    background: #fff;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+    0 25px 50px 0 rgba(0, 0, 0, 0.1);
+    margin:20px;
+}
+.caisse, .articles{
+    display: inline-block;
+}
+.articleapp > div{
+    display: flex;
+}
+.add{
+    margin-right: 12px;
+}
+.parametre{
+    position: absolute;
+    top: 17px;
+    right: 5px;
+}
+.articles
+{
+    min-width: 30%;
+    flex-shrink: 0;
+    vertical-align: top;
+    border-left: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+}
+.articles > .fa{
+    font-size: 35px;
+    color: green;
+}
+.articles .new-article {
+
+}
+.articles > .fa, .articles .new-article{
+    display: inline-block;
+}
+.caisse .article-list li label{
+    display: inline-block;
+}
+.caisse .article-list li button {
+ font-size: 18px;
+    min-width: 42px;
+}
+.caisse .article-list {
+}
+.caisse .article-list li{
+    display: inline-block;
+    min-width: 250px;
+}
+
+.articleapp input::-webkit-input-placeholder {
+    font-style: italic;
+    font-weight: 300;
+    color: #e6e6e6;
+}
+
+.articleapp input::-moz-placeholder {
+    font-style: italic;
+    font-weight: 300;
+    color: #e6e6e6;
+}
+
+.articleapp input::input-placeholder {
+    font-style: italic;
+    font-weight: 300;
+    color: #e6e6e6;
+}
+
+.articleapp h1 {
+    text-align: center;
+}
+.view{
+    text-align: left;
+    display: inline-flex;
+    width: 100%;
+}
+.edit_completed, .edit_title, .edit_stock, .destroy{
+    margin:0 1%;
+    line-height: initial;
+    display: flex;
+    height: 40px;
+    font-size: 20px;
+}
+.edit_completed{
+    width: 13%;
+    height: 20px;
+    margin-top: 10px;
+}
+.edit_title{
+    width: 58%;
+}
+.edit_stock{
+    width: 55px;
+}
+
+.destroy .fa{
+    color: #a41010;
+    font-size: 35px;
+}
+
+.new-article{
+    position: relative;
+    margin: 0;
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 1.4em;
+    border: 0;
+    color: inherit;
+    padding: 6px;
+    border: 1px solid #999;
+    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.new-article {
+    border: none;
+    background: rgba(0, 0, 0, 0.003);
+    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+
+.main {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid #e6e6e6;
+}
+
+.toggle-all {
+    width: 1px;
+    height: 1px;
+    border: none; /* Mobile Safari */
+    opacity: 0;
+    position: absolute;
+    right: 100%;
+    bottom: 100%;
+}
+
+.toggle-all + label {
+    color:darkgreen;
+    position: absolute;
+    top: -38px;
+    left:22px;
+}
+
+.toggle-all:checked + label:before {
+    color: #737373;
+}
+
+.article-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.article-list li {
+    position: relative;
+    font-size: 24px;
+    border-bottom: 1px solid #ededed;
+    padding: 6px;
+}
+
+.article-list li:last-child {
+    border-bottom: none;
+}
+
+.article-list li.editing {
+    border-bottom: none;
+    padding: 0;
+}
+
+.article-list li.editing .edit {
+    display: block;
+    width: calc(100% - 43px);
+    padding: 12px 16px;
+    margin: 0 0 0 43px;
+}
+
+.article-list li.editing .view {
+    display: none;
+}
+
+.article-list li label {
+    word-break: break-all;
+    padding-left: 15px;
+    display: block;
+    line-height: 40px;
+    transition: color 0.4s;
+    margin: 0;
+}
+
+.article-list li.completed label {
+    color: #d9d9d9;
+    text-decoration: line-through;
+}
+.article-list li.completed button {
+    filter: grayscale(1);
+}
+
+
+.article-list li.editing:last-child {
+    margin-bottom: -1px;
+}
+
+.footer {
+    color: #777;
+    padding: 10px 15px;
+    text-align: center;
+    border-top: 1px solid #e6e6e6;
+}
+
+.footer:after {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+    0 8px 0 -3px #f6f6f6,
+    0 9px 1px -3px rgba(0, 0, 0, 0.2),
+    0 16px 0 -6px #f6f6f6,
+    0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.article-count {
+    float: left;
+    text-align: right;
+}
+
+.article-count strong {
+    font-weight: 300;
+}
+
+.filters {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.filters li {
+    display: inline;
+}
+
+.filters li a {
+    color: inherit;
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.filters li a:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+}
+
+.filters li a.selected {
+    border-color: rgba(175, 47, 47, 0.2);
+}
+
+.clear-completed,
+html .clear-completed:active {
+    position: relative;
+    line-height: 20px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.clear-completed:hover {
+    text-decoration: underline;
+}
+.clear-completed{
+    padding: 6px;
+}
+
+.info {
+    margin: 65px auto 0;
+    color: #bfbfbf;
+    font-size: 10px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+.info p {
+    line-height: 1;
+}
+
+.info a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.info a:hover {
+    text-decoration: underline;
+}

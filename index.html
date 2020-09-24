@@ -1,0 +1,117 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="app.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="all.css" />
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body class="app">
+<h1 style="text-align: center"><img src="logo-naliere.png"> FoodTruck de Nalière</h1>
+<section class="articleapp">
+    <div>
+        <section class="caisse">
+            <div class="parametre" @click="isShowing ^= true" style="cursor: pointer;    font-size: 24px;"><i class="fa fa-cogs"></i></div>
+            <ul class="article-list">
+                <li
+                        v-for="article in filteredarticles"
+                        class="article"
+                        :key="article.id"
+                        :class="{ completed: article.completed, editing: article == editedarticle }"
+                >
+                    <div class="view">
+                        <button class="add btn btn-success" @click="addonearticle(article)"><i class="fa fa-plus-square"></i></button>
+                        <button class="remove btn btn-danger" :class="{ 'inactive' : article.number == 0 }" @click="removeonearticle(article)"><i class="fa fa-minus-square "></i></button>
+                        <label :class="{'alert-danger' : article.stock && article.stock - article.number < 0 }">{{ article.title }} ({{ article.number }}{{ article.stock ? '/'+article.stock : '' }})</label>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="articles"  v-show="isShowing">
+            <header class="header">
+                <h1>Paramétrages</h1>
+            </header>
+            <section class="main" v-show="articles.length" v-cloak>
+                <input id="toggle-all" class="toggle-all" type="checkbox" v-model="allDone" />
+                <label for="toggle-all"><i class="fa fa-check-double"></i></label>
+                <ul class="article-list">
+                    <li
+                            v-for="article in filteredarticles"
+                            class="article"
+                            :key="article.id"
+                            :class="{ completed: article.completed, editing: article == editedarticle }"
+                    >
+                        <div class="view">
+                            <input class="toggle edit_completed" type="checkbox" v-model="article.completed"/>
+                            <input
+                                    class="edit_title"
+                                    type="text"
+                                    v-model="article.title"
+                                    @blur="doneEdit(article)"
+                                    @keyup.enter="doneEdit(article)"
+                            />
+                            <input
+                                    class="edit_stock"
+                                    type="number"
+                                    v-model="article.stock"
+                                    @blur="doneEdit(article)"
+                                    @keyup.enter="doneEdit(article)"
+                            />
+                            <button class="destroy" @click="removearticle(article)"><i class="fa fa-times"></i></button>
+                        </div>
+                    </li>
+                </ul>
+                <button
+                        class="clear-completed"
+                        @click="removeCompleted"
+                        v-show="articles.length > remaining"
+                >
+                    Supprimer la selection
+                </button>
+                <br/>
+                <button
+                        class="clear-completed"
+                        @click="cleanCompleted"
+                        v-show="articles.length > remaining"
+                >
+                    Remettre à zéro la selection
+                </button>
+            </section>
+            <i class="fa fa-plus"></i>
+            <input
+                    class="new-article"
+                    autofocus
+                    autocomplete="off"
+                    placeholder="Ajoute un article"
+                    v-model="newarticle"
+                    @keyup.enter="addarticle"
+            />
+        </section>
+    </div>
+    <footer class="footer" v-show="articles.length" v-cloak>
+
+        <ul class="filters">
+            <li>
+                <a href="#/all" :class="{ selected: visibility == 'all' }">Tous</a>
+            </li>
+            <li>
+                <a href="#/active" :class="{ selected: visibility == 'active' }">Actif</a>
+            </li>
+            <li>
+                <a href="#/en_stock" :class="{ selected: visibility == 'en_stock' }">En stock</a>
+            </li>
+            <li>
+                <a href="#/completed" :class="{ selected: visibility == 'completed' }">Corbeille</a>
+            </li>
+        </ul>
+    </footer>
+</section>
+<script src="app.js"></script>
+</body>
+</html>
