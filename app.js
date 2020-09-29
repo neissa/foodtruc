@@ -48,7 +48,7 @@ var app = new Vue({
         newarticle: "",
         editedarticle: null,
         visibility: "all",
-        isShowing:articleStorage.count()==0,
+        isShowing:articleStorage.count()===0,
     },
 
     // watch articles change for localStorage persistence
@@ -117,11 +117,8 @@ var app = new Vue({
         },
         addonearticle: function(article) {
             article.number++;
-            var msg = new SpeechSynthesisUtterance(article.title);
-            msg.pitch = 0.7;
-            msg.rate = 2.5;
-            window.speechSynthesis.cancel();
-            window.speechSynthesis.speak(msg);
+            play(article.title);
+
         },
         removeonearticle: function(article) {
             if( article.number>0)
@@ -181,6 +178,28 @@ function onHashChange() {
 
 window.addEventListener("hashchange", onHashChange);
 onHashChange();
+
+function play(text) {
+    var http = new XMLHttpRequest();
+
+    http.open('HEAD', "/sons/"+text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f ]/g, "")+".m4a", false);
+    http.send();
+
+    if(http.status !== 404)
+    {
+        var myAudio = document.createElement('audio');
+        myAudio.setAttribute('src', "/sons/"+text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f ]/g, "")+".m4a");
+        myAudio.play();
+    }
+    else {
+        var msg = new SpeechSynthesisUtterance(text);
+        msg.pitch = 0.7;
+        msg.rate = 2.5;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(msg);
+    }
+
+}
 
 // mount
 app.$mount(".articleapp");
